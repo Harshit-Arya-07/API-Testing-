@@ -1,4 +1,4 @@
-# API Testing Projects with Postman, Rest Assured, Cypress 🌐
+# API Testing Projects with Postman.
 
 Welcome to the **API Testing Projects** repository! This project showcases various API testing projects using Postman, Rest Assured, and Cypress.
 
