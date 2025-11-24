@@ -1,0 +1,399 @@
+{
+	"info": {
+		"_postman_id": "f85a1784-81dd-4eda-8aab-56d3e3970f60",
+		"name": "Trello",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Creating a Board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "01b84263-e14e-44e3-b4f5-473f61b1f625",
+						"exec": [
+							"\r",
+							"pm.environment.set(\"id\", pm.response.json().id);\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "67f5ae82-4426-4d29-ad38-8e8f4d4df299",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}boards/?name={{$randomFullName}}&key={{apiKey}}&token={{accessToken}}",
+					"host": [
+						"{{BaseURL}}boards"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "{{$randomFullName}}"
+						},
+						{
+							"key": "key",
+							"value": "{{apiKey}}"
+						},
+						{
+							"key": "token",
+							"value": "{{accessToken}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updating board name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a62146b5-a9b5-4575-81ef-8e5515cd447d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "57c32aa5-490f-45e3-9f08-830586dac337",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"name\": \"{{$randomFullName}}\"\r\n      }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}boards/{{id}}?key={{apiKey}}&token={{accessToken}}",
+					"host": [
+						"{{BaseURL}}boards"
+					],
+					"path": [
+						"{{id}}"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{apiKey}}"
+						},
+						{
+							"key": "token",
+							"value": "{{accessToken}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get the board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "532dc297-8572-4421-bca4-ee11399516a5",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "6c987891-9d33-46f3-9eea-471913518c24",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}boards/{{id}}?key={{apiKey}}&token={{accessToken}}",
+					"host": [
+						"{{BaseURL}}boards"
+					],
+					"path": [
+						"",
+						"{{id}}"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{apiKey}}"
+						},
+						{
+							"key": "token",
+							"value": "{{accessToken}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Label",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "eb50c73f-ea16-4ab5-b458-adc34c43a5d0",
+						"exec": [
+							"const labelId = pm.response.json().id;\r",
+							"pm.environment.set(\"labelId\", labelId);\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "f6b31da7-8539-4b49-a591-ea31a4a1b6f0",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}labels?name={{$randomFirstName}}&color=blue&idBoard={{id}}&key={{apiKey}}&token={{accessToken}}",
+					"host": [
+						"{{BaseURL}}labels"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "{{$randomFirstName}}"
+						},
+						{
+							"key": "color",
+							"value": "blue"
+						},
+						{
+							"key": "idBoard",
+							"value": "{{id}}"
+						},
+						{
+							"key": "key",
+							"value": "{{apiKey}}"
+						},
+						{
+							"key": "token",
+							"value": "{{accessToken}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get the label",
+			"_postman_id": "753d4eb8-bd5f-4612-a78a-88297edc970b",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}labels/{{labelId}}?key={{apiKey}}&token={{accessToken}}",
+					"host": [
+						"{{BaseURL}}labels"
+					],
+					"path": [
+						"{{labelId}}"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{apiKey}}"
+						},
+						{
+							"key": "token",
+							"value": "{{accessToken}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Label color",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "50410393-4959-4ed0-8d08-07f1b1fb7bc1",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "af963332-7c69-4694-8288-66b817a1c50b",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"color\": \"{{$randomColor}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}labels/{{labelId}}?key={{apiKey}}&token={{accessToken}}",
+					"host": [
+						"{{BaseURL}}labels"
+					],
+					"path": [
+						"{{labelId}}"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{apiKey}}"
+						},
+						{
+							"key": "token",
+							"value": "{{accessToken}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a Label",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d5447f8b-a83b-45cd-85f8-e01314daac96",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "38a4c064-4450-4869-bc25-2d8f8692589f",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}labels/{{labelId}}?key={{apiKey}}&token={{accessToken}}",
+					"host": [
+						"{{BaseURL}}labels"
+					],
+					"path": [
+						"{{labelId}}"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{apiKey}}"
+						},
+						{
+							"key": "token",
+							"value": "{{accessToken}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting a board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b07cdcab-642b-44c7-90fa-6e94da899a64",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "bd6b30b2-b133-4192-8ae3-eb2724e26ac8",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}boards/{{id}}?key={{apiKey}}&token={{accessToken}}",
+					"host": [
+						"{{BaseURL}}boards"
+					],
+					"path": [
+						"{{id}}"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{apiKey}}"
+						},
+						{
+							"key": "token",
+							"value": "{{accessToken}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

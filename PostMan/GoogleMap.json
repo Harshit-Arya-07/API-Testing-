@@ -1,0 +1,136 @@
+{
+	"info": {
+		"_postman_id": "ceac2614-5c89-43be-9238-6de36d329f84",
+		"name": "Google Map",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST-GM",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e0f18dcf-c854-4689-9d65-26644df99979",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"place_id\");\r",
+							"});\r",
+							"pm.test(\"checking for status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"OK\");\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"OK\");\r",
+							"});\r",
+							"const res = pm.response.json().place_id;\r",
+							"pm.environment.set(\"place_id\", res);\r",
+							"// pm.globals.set(\"place_id\", res);\r",
+							"// pm.globals.unset(\"place_id\");\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "adbf0c02-79cc-4989-a6bc-4f77a8fc1c72",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n    \"location\":{\r\n\r\n        \"lat\" : -38.383494,\r\n\r\n        \"lng\" : 33.427362\r\n\r\n    },\r\n\r\n    \"accuracy\":50,\r\n\r\n    \"name\":\"Frontline house\",\r\n\r\n    \"phone_number\":\"(+91) 983 893 3937\",\r\n\r\n    \"address\" : \"29, side layout, cohen 09\",\r\n\r\n    \"types\": [\"shoe park\",\"shop\"],\r\n\r\n    \"website\" : \"http://google.com\",\r\n\r\n    \"language\" : \"French-IN\"\r\n\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/maps/api/place/add/json?key= qaclick123",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"maps",
+						"api",
+						"place",
+						"add",
+						"json"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": " qaclick123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE-GM",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9fbd4875-97e2-48a0-ba31-53914c56adc3",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "a1b968fb-a40a-4f48-9d22-7024dfced27c",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"place_id\":\"{{place_id}}\"          \r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://216.10.245.166/maps/api/place/delete/json?key=qaclick123",
+					"protocol": "http",
+					"host": [
+						"216",
+						"10",
+						"245",
+						"166"
+					],
+					"path": [
+						"maps",
+						"api",
+						"place",
+						"delete",
+						"json"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "qaclick123"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

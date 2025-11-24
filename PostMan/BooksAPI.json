@@ -1,0 +1,217 @@
+{
+	"info": {
+		"_postman_id": "0c0b1753-6f4b-4795-8c79-f9afb739f0ee",
+		"name": "Books API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Adding the user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "32ac4f8c-e32c-48dc-8614-45478171ebc4",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"const token = pm.response.json().accessToken;\r",
+							"pm.environment.set(\"accessToken\", token);\r",
+							"pm.globals.set(\"random\", Math.random());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "8df5798c-d950-4ccf-9ac3-e7f30200b219",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"clientName\": \"{{name}}\",\r\n   \"clientEmail\": \"{{email}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BaseURL}}/api-clients/"
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "15c2156a-ec25-4ed5-9b95-7fa3ca71532a",
+						"exec": [
+							"const orderId = pm.response.json().orderId;\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.environment.set(\"orderId\", orderId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "bfdec21b-a526-497b-aad2-71810c61fe78",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{accessToken}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"bookId\": 1,\r\n  \"customerName\": \"Sukhmani\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BaseURL}}/orders"
+			},
+			"response": []
+		},
+		{
+			"name": "Getting the book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d18245fe-4137-4d73-9054-cf2c355cd4ea",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "450ba1d9-9424-4f21-9c31-8076d24ea83d",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{accessToken}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BaseURL}}/orders/{{orderId}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Updating customer name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "87bac413-858a-4c86-b156-35027fad8b4b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "76acc9d7-e6c1-400e-9ec4-7c0f072c5790",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{accessToken}}"
+					}
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"customerName\": \"{{$randomFullName}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BaseURL}}/orders/{{orderId}}"
+			},
+			"response": []
+		},
+		{
+			"name": "deleting book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c51a392a-9550-42d4-b413-0c1ab8d722dc",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "b276b450-40c5-40e7-8c5e-e3e801d251db",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{accessToken}}"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": "{{BaseURL}}/orders/{{orderId}}"
+			},
+			"response": []
+		}
+	]
+}

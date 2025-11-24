@@ -1,0 +1,149 @@
+{
+	"info": {
+		"_postman_id": "32cf6743-b330-4fee-808e-92ad436b68ae",
+		"name": "Employee API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Creating an Employee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "056ed366-086c-46ec-a750-e2798971b24d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.environment.set(\"id\", pm.response.json().data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "f8ac5195-7454-49b8-a444-8eb047548925",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\"name\":\"{{$randomFullName}}\",\r\n    \"salary\":\"{{$randomPrice}}\",\r\n    \"age\":\"23\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BaseURL}}/create"
+			},
+			"response": []
+		},
+		{
+			"name": "Getting all employees",
+			"_postman_id": "4f8e4291-32e0-4d02-8c8d-40c9e9826f0f",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{BaseURL}}/employees"
+			},
+			"response": []
+		},
+		{
+			"name": "Getting Employee with id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8cce0f00-1b21-491a-b6e9-527319420b02",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "7b3a3dfa-782b-4d78-a698-c464f089b740",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{BaseURL}}/employee/{{id}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Updating an employee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5370c98e-5dec-4d0d-8097-26228851d54d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "ba5cb2aa-f745-4139-a374-276ac9998c04",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\"name\":\"{{$randomFullName}}\",\r\n    \"salary\":\"{{$randomPrice}}\",\r\n    \"age\":\"23\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BaseURL}}/update/{{id}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting an Employee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2dbcee3c-2cea-4c37-b108-73dbeda2955b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "62d3f449-3ae0-4270-84d5-7534c427ec0c",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "{{BaseURL}}/delete/{{id}}"
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,101 @@
+{
+	"info": {
+		"_postman_id": "86478764-8660-48f5-9633-05979f8e23f8",
+		"name": "reqres",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET-reqres",
+			"_postman_id": "012a3e17-626e-425e-9827-8bc7381b825e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://reqres.in/api/users/2"
+			},
+			"response": []
+		},
+		{
+			"name": "POST-reqres",
+			"_postman_id": "ee41c18c-a3f9-4514-852f-593f5f743ad5",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"name\": \"morpheus\",\r\n        \"job\": \"leader\"\r\n      }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://reqres.in/api/users"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT-reqres",
+			"_postman_id": "398a5610-2205-411a-bda1-85990abd8e64",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Sukhmani\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://reqres.in/api/users/2"
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH-reqres",
+			"_postman_id": "0bec0277-97b4-496c-b510-a8d4bb66d326",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Pooja\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://reqres.in/api/users/2"
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"_postman_id": "6cab5270-ffcf-4d77-8b17-982ecf247cc9",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "https://reqres.in/api/users/2"
+			},
+			"response": []
+		}
+	]
+}

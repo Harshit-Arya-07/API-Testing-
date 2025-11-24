@@ -1,0 +1,294 @@
+{
+	"info": {
+		"_postman_id": "c987ddd5-e533-4b22-b7ca-4969390aa172",
+		"name": "Users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "330674f3-9539-47da-a1be-0136f1fb6ad7",
+						"exec": [
+							"pm.environment.set(\"id\", pm.response.json().id);\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "85ee5179-4455-4505-82c0-81785bbca67a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{accessToken}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"name\": \"{{$randomFullName}}\",\r\n        \"email\": \"{{$randomAlphaNumeric}}{{$randomAbbreviation}}@gmail.example\",\r\n        \"gender\": \"male\",\r\n        \"status\": \"active\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BaseUrl}}users"
+			},
+			"response": []
+		},
+		{
+			"name": "Getting the user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "848ae35d-c5da-4bfc-9233-a998e20e3d0f",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "f40982dc-6016-42f5-bfaf-d6c7adbcd860",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{accessToken}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{BaseUrl}}users/{{id}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Updating user Details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "360936c1-08fd-4218-99db-5d917b6d2989",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "39facbeb-d725-4c64-b920-bcaa2dba1934",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{accessToken}}"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"name\": \"{{$randomFullName}}\",\r\n        \"email\": \"{{$randomAlphaNumeric}}{{$randomAbbreviation}}@gmail.example\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BaseUrl}}users/{{id}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Creating User Post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "acbcc1fe-c041-43a4-a736-1bbf823a5920",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.environment.set(\"post_id\", pm.response.json().id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "a553c0d6-bb66-444c-9093-f469d7e8c2c8",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{accessToken}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"title\":\"{{$randomLoremSentence}}\",\r\n\"body\":\"{{$randomLoremSentences}}\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BaseUrl}}users/{{id}}/posts"
+			},
+			"response": []
+		},
+		{
+			"name": "Getting user posts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d44eba91-9705-4c34-b814-354f3c717553",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "d1b1c1fc-f240-45b2-8126-b01954755172",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{accessToken}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{BaseUrl}}users/{{id}}/posts"
+			},
+			"response": []
+		},
+		{
+			"name": "Adding comment to a post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9cd96310-5d2f-4d35-9464-7032077a365d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "ddd461d4-123b-4124-a981-3f0c064ebb34",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{accessToken}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"{{$randomFullName}}\",\r\n\"email\":\"{{$randomFirstName}}@{{$randomLastName}}.example\",\r\n\"body\":\"{{$randomLoremSentences}}\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BaseUrl}}/posts/{{post_id}}/comments"
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "29c16504-1787-404d-b563-2d4182a7fc3b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "c612a5f8-ff83-41b9-a92a-5840fbba9746",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{accessToken}}"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}users/{{id}}",
+					"host": [
+						"{{BaseUrl}}users"
+					],
+					"path": [
+						"{{id}}"
+					],
+					"query": [
+						{
+							"key": null,
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
